@@ -1,0 +1,10 @@
+platform :ios, '9.0'
+use_frameworks!
+target 'MLDemo' do
+
+pod 'SnapKit'
+pod 'Kingfisher'
+pod 'RxSwift'
+pod 'RxCocoa'
+
+end

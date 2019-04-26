@@ -21,7 +21,7 @@ class YYBaseCollectionViewController: YYBaseViewController {
     private var layout: UICollectionViewLayout!
     
     init(layout: UICollectionViewLayout) {
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         self.layout = layout
     }
     

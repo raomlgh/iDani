@@ -22,7 +22,7 @@ class YYBaseTableViewController: YYBaseViewController {
     private var tableViewStyle: UITableView.Style!
     
     init(style: UITableView.Style = .plain) {
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         self.tableViewStyle = style
     }
     

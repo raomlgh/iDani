@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB0A9C4F22716376000C05A0 /* pic_ava_lm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB0A9C4D22716375000C05A0 /* pic_ava_lm@2x.png */; };
-		BB0A9C5022716376000C05A0 /* pic_bg_ikun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB0A9C4E22716375000C05A0 /* pic_bg_ikun@2x.png */; };
 		BB0B37A2226FF9D200605FBC /* UINavigationBar+extends.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B37A1226FF9D200605FBC /* UINavigationBar+extends.swift */; };
 		BB0B37A5227018FC00605FBC /* YYCoustomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B37A4227018FC00605FBC /* YYCoustomBarView.swift */; };
 		BB0E382C226EA389001C3B12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0E382B226EA389001C3B12 /* AppDelegate.swift */; };
@@ -35,6 +33,8 @@
 		BB10365D2272955E007A8A20 /* YYHitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10365C2272955E007A8A20 /* YYHitFilterView.swift */; };
 		BB10365F2272FCF1007A8A20 /* YYCoustomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10365E2272FCF1007A8A20 /* YYCoustomBarViewController.swift */; };
 		BB10366222730002007A8A20 /* YYCoustomBarMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10366122730002007A8A20 /* YYCoustomBarMenuViewController.swift */; };
+		BB103669227315D2007A8A20 /* pic_ava_lm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB103667227315D1007A8A20 /* pic_ava_lm@2x.png */; };
+		BB10366A227315D2007A8A20 /* pic_bg_ikun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB103668227315D1007A8A20 /* pic_bg_ikun@2x.png */; };
 		F8700022C3B59F0AF4229334 /* Pods_MLDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0ED0E08A008C595698907EA /* Pods_MLDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,8 +42,6 @@
 		235947B8A3A2315538557E2A /* Pods-MLDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLDemo/Pods-MLDemo.release.xcconfig"; sourceTree = "<group>"; };
 		99C5AAE9FD12B1921B4EC406 /* Pods-MLDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLDemo/Pods-MLDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		B0ED0E08A008C595698907EA /* Pods_MLDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MLDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB0A9C4D22716375000C05A0 /* pic_ava_lm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_ava_lm@2x.png"; sourceTree = "<group>"; };
-		BB0A9C4E22716375000C05A0 /* pic_bg_ikun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_bg_ikun@2x.png"; sourceTree = "<group>"; };
 		BB0B37A1226FF9D200605FBC /* UINavigationBar+extends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+extends.swift"; sourceTree = "<group>"; };
 		BB0B37A4227018FC00605FBC /* YYCoustomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCoustomBarView.swift; sourceTree = "<group>"; };
 		BB0E3828226EA389001C3B12 /* MLDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +70,8 @@
 		BB10365C2272955E007A8A20 /* YYHitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYHitFilterView.swift; sourceTree = "<group>"; };
 		BB10365E2272FCF1007A8A20 /* YYCoustomBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCoustomBarViewController.swift; sourceTree = "<group>"; };
 		BB10366122730002007A8A20 /* YYCoustomBarMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCoustomBarMenuViewController.swift; sourceTree = "<group>"; };
+		BB103667227315D1007A8A20 /* pic_ava_lm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_ava_lm@2x.png"; sourceTree = "<group>"; };
+		BB103668227315D1007A8A20 /* pic_bg_ikun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_bg_ikun@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,8 +206,8 @@
 			children = (
 				BB0E386B226F1809001C3B12 /* back_arrow@2x.png */,
 				BB0E386A226F1809001C3B12 /* back_arrow@3x.png */,
-				BB0A9C4D22716375000C05A0 /* pic_ava_lm@2x.png */,
-				BB0A9C4E22716375000C05A0 /* pic_bg_ikun@2x.png */,
+				BB103667227315D1007A8A20 /* pic_ava_lm@2x.png */,
+				BB103668227315D1007A8A20 /* pic_bg_ikun@2x.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -290,11 +290,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB0E3836226EA38A001C3B12 /* LaunchScreen.storyboard in Resources */,
-				BB0A9C4F22716376000C05A0 /* pic_ava_lm@2x.png in Resources */,
+				BB103669227315D2007A8A20 /* pic_ava_lm@2x.png in Resources */,
 				BB0E386D226F1809001C3B12 /* back_arrow@2x.png in Resources */,
 				BB0E3833226EA38A001C3B12 /* Assets.xcassets in Resources */,
 				BB0E386C226F1809001C3B12 /* back_arrow@3x.png in Resources */,
-				BB0A9C5022716376000C05A0 /* pic_bg_ikun@2x.png in Resources */,
+				BB10366A227315D2007A8A20 /* pic_bg_ikun@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

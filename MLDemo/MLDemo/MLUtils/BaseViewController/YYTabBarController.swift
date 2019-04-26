@@ -18,6 +18,7 @@ class YYTabBarController: UITabBarController {
     
     private func createNavigationController(rootViewController: UIViewController) -> UINavigationController {        
         rootViewController.popGestureRecognizerEnabled = NSNumber(booleanLiteral: false)
+        rootViewController.hidesBottomBarWhenPushed = false
         
         let aNaviController = YYNavigationController(rootViewController: rootViewController)
         return aNaviController

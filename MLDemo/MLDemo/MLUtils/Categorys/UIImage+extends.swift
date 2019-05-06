@@ -30,17 +30,17 @@ extension UIImage {
     /**
      取Bundle.main下的图片     
      */
-    class func yy_imageFromBundle(_ name: String) -> UIImage? {
-        var imagePath = Bundle.main.path(forResource: name + "@" + "\(Int(UIScreen.main.scale))x", ofType: "png")
+    class func yy_imageFromBundle(_ name: String, _ ofType: String = "png") -> UIImage? {
+        var imagePath = Bundle.main.path(forResource: name + "@" + "\(Int(UIScreen.main.scale))x", ofType: ofType)
         
         if imagePath?.isEmpty ?? true {
             // 当前iOS最高倍图
             var maxScale = 3
             repeat {
                 if maxScale == 1 {
-                    imagePath = Bundle.main.path(forResource: name, ofType: "png")
+                    imagePath = Bundle.main.path(forResource: name, ofType: ofType)
                 }else {                    
-                    imagePath = Bundle.main.path(forResource: name + "@" + "\(maxScale)x", ofType: "png")
+                    imagePath = Bundle.main.path(forResource: name + "@" + "\(maxScale)x", ofType: ofType)
                 }
                 maxScale -= 1
             } while (maxScale > 0 && imagePath?.isEmpty ?? true)

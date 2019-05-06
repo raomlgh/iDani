@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BB0B37A2226FF9D200605FBC /* UINavigationBar+extends.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B37A1226FF9D200605FBC /* UINavigationBar+extends.swift */; };
 		BB0B37A5227018FC00605FBC /* YYCoustomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0B37A4227018FC00605FBC /* YYCoustomBarView.swift */; };
+		BB0CB0F522801F6700E9E331 /* pic_bg_duice@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BB0CB0F422801F6700E9E331 /* pic_bg_duice@2x.jpg */; };
+		BB0CB0F722801FE100E9E331 /* pic_bg_ikun@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BB0CB0F622801FE100E9E331 /* pic_bg_ikun@2x.jpg */; };
 		BB0E382C226EA389001C3B12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0E382B226EA389001C3B12 /* AppDelegate.swift */; };
 		BB0E3833226EA38A001C3B12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB0E3832226EA38A001C3B12 /* Assets.xcassets */; };
 		BB0E3836226EA38A001C3B12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0E3834226EA38A001C3B12 /* LaunchScreen.storyboard */; };
@@ -27,14 +29,12 @@
 		BB0E3864226EF1FA001C3B12 /* YYBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0E3863226EF1FA001C3B12 /* YYBaseTableViewController.swift */; };
 		BB0E3866226F0BAB001C3B12 /* YYBaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0E3865226F0BAB001C3B12 /* YYBaseCollectionViewController.swift */; };
 		BB0E3868226F12F5001C3B12 /* YYMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0E3867226F12F5001C3B12 /* YYMenuViewController.swift */; };
-		BB0E386C226F1809001C3B12 /* back_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB0E386A226F1809001C3B12 /* back_arrow@3x.png */; };
 		BB0E386D226F1809001C3B12 /* back_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB0E386B226F1809001C3B12 /* back_arrow@2x.png */; };
 		BB0E386F226F1C3F001C3B12 /* UIViewController+extends.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0E386E226F1C3F001C3B12 /* UIViewController+extends.swift */; };
 		BB10365D2272955E007A8A20 /* YYHitFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10365C2272955E007A8A20 /* YYHitFilterView.swift */; };
 		BB10365F2272FCF1007A8A20 /* YYCoustomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10365E2272FCF1007A8A20 /* YYCoustomBarViewController.swift */; };
 		BB10366222730002007A8A20 /* YYCoustomBarMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10366122730002007A8A20 /* YYCoustomBarMenuViewController.swift */; };
 		BB103669227315D2007A8A20 /* pic_ava_lm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB103667227315D1007A8A20 /* pic_ava_lm@2x.png */; };
-		BB10366A227315D2007A8A20 /* pic_bg_ikun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB103668227315D1007A8A20 /* pic_bg_ikun@2x.png */; };
 		F8700022C3B59F0AF4229334 /* Pods_MLDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0ED0E08A008C595698907EA /* Pods_MLDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +44,8 @@
 		B0ED0E08A008C595698907EA /* Pods_MLDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MLDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0B37A1226FF9D200605FBC /* UINavigationBar+extends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+extends.swift"; sourceTree = "<group>"; };
 		BB0B37A4227018FC00605FBC /* YYCoustomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCoustomBarView.swift; sourceTree = "<group>"; };
+		BB0CB0F422801F6700E9E331 /* pic_bg_duice@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pic_bg_duice@2x.jpg"; sourceTree = "<group>"; };
+		BB0CB0F622801FE100E9E331 /* pic_bg_ikun@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pic_bg_ikun@2x.jpg"; sourceTree = "<group>"; };
 		BB0E3828226EA389001C3B12 /* MLDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0E382B226EA389001C3B12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB0E3832226EA38A001C3B12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,14 +66,12 @@
 		BB0E3863226EF1FA001C3B12 /* YYBaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYBaseTableViewController.swift; sourceTree = "<group>"; };
 		BB0E3865226F0BAB001C3B12 /* YYBaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYBaseCollectionViewController.swift; sourceTree = "<group>"; };
 		BB0E3867226F12F5001C3B12 /* YYMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYMenuViewController.swift; sourceTree = "<group>"; };
-		BB0E386A226F1809001C3B12 /* back_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_arrow@3x.png"; sourceTree = "<group>"; };
 		BB0E386B226F1809001C3B12 /* back_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_arrow@2x.png"; sourceTree = "<group>"; };
 		BB0E386E226F1C3F001C3B12 /* UIViewController+extends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extends.swift"; sourceTree = "<group>"; };
 		BB10365C2272955E007A8A20 /* YYHitFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYHitFilterView.swift; sourceTree = "<group>"; };
 		BB10365E2272FCF1007A8A20 /* YYCoustomBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCoustomBarViewController.swift; sourceTree = "<group>"; };
 		BB10366122730002007A8A20 /* YYCoustomBarMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCoustomBarMenuViewController.swift; sourceTree = "<group>"; };
 		BB103667227315D1007A8A20 /* pic_ava_lm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_ava_lm@2x.png"; sourceTree = "<group>"; };
-		BB103668227315D1007A8A20 /* pic_bg_ikun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_bg_ikun@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,9 +205,9 @@
 			isa = PBXGroup;
 			children = (
 				BB0E386B226F1809001C3B12 /* back_arrow@2x.png */,
-				BB0E386A226F1809001C3B12 /* back_arrow@3x.png */,
 				BB103667227315D1007A8A20 /* pic_ava_lm@2x.png */,
-				BB103668227315D1007A8A20 /* pic_bg_ikun@2x.png */,
+				BB0CB0F622801FE100E9E331 /* pic_bg_ikun@2x.jpg */,
+				BB0CB0F422801F6700E9E331 /* pic_bg_duice@2x.jpg */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -291,10 +291,10 @@
 			files = (
 				BB0E3836226EA38A001C3B12 /* LaunchScreen.storyboard in Resources */,
 				BB103669227315D2007A8A20 /* pic_ava_lm@2x.png in Resources */,
+				BB0CB0F722801FE100E9E331 /* pic_bg_ikun@2x.jpg in Resources */,
 				BB0E386D226F1809001C3B12 /* back_arrow@2x.png in Resources */,
 				BB0E3833226EA38A001C3B12 /* Assets.xcassets in Resources */,
-				BB0E386C226F1809001C3B12 /* back_arrow@3x.png in Resources */,
-				BB10366A227315D2007A8A20 /* pic_bg_ikun@2x.png in Resources */,
+				BB0CB0F522801F6700E9E331 /* pic_bg_duice@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

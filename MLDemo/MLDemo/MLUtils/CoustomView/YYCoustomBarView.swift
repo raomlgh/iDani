@@ -168,10 +168,18 @@ public extension YYCoustomBarView {
     }
     
     /**
-     添加子视图
+     添加子视图到mContentView上
      */
     public func setContentSubview(_ view: YYHitFilterView,  _ closure: (_ make: ConstraintMaker) -> Void) {
         self.mContentView.addSubview(view)
+        view.snp.makeConstraints(closure)
+    }
+    
+    /**
+     添加子视图到self上及mBarView下
+     */
+    public func setBackgroundSubview(_ view: YYHitFilterView,  _ closure: (_ make: ConstraintMaker) -> Void) {
+        self.insertSubview(view, belowSubview: self.mBarView)
         view.snp.makeConstraints(closure)
     }
     
@@ -226,7 +234,7 @@ public extension YYCoustomBarView {
         let originOffset_y = bindScrollView.contentInset.top - (self.viewController?.yy_navigationBarHeight() ?? 0)
         
         bindScrollView.rx.contentOffset.subscribe(onNext: { [unowned self] (contentOffset) in
-            var alpha = self.mBackgroundImgView.alpha
+            var alpha = self.mBarView.alpha
             var height = self.bounds.size.height
             
             if isProgress {

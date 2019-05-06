@@ -10,6 +10,33 @@ import UIKit
 
 class YYBaseViewController: UIViewController {
     
+    open var statusBarStyle: UIStatusBarStyle = .default {
+        didSet {
+            if statusBarStyle == oldValue {
+                return
+            }
+            
+            // 更新StatusBar
+            self.setNeedsStatusBarAppearanceUpdate()
+            
+            // 标题颜色
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18.0), NSAttributedString.Key.foregroundColor: statusBarStyle == .default ? UIColor.black : UIColor.white]
+            
+            // BarButtonItems
+            if let leftItems = self.navigationItem.leftBarButtonItems {
+                for item in leftItems {
+                    item.tintColor = statusBarStyle == .default ? UIColor.black : UIColor.white
+                }
+            }
+            
+            if let rightItems = self.navigationItem.rightBarButtonItems {
+                for item in rightItems {
+                    item.tintColor = statusBarStyle == .default ? UIColor.black : UIColor.white
+                }
+            }
+        }
+    }
+    
     override func loadView() {
         super.loadView()
         
@@ -41,6 +68,11 @@ class YYBaseViewController: UIViewController {
         super.viewDidLayoutSubviews()
         self.view.bringSubviewToFront(self.yy_barCoustomView)
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.statusBarStyle
+    }
+    
     
     deinit {
         print("*** \(NSStringFromClass(self.classForCoder)) deinit ***♻️")

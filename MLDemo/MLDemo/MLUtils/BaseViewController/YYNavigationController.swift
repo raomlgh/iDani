@@ -14,7 +14,11 @@ class YYNavigationController: UINavigationController {
         super.viewDidLoad()
         self.delegate = self
         self.interactivePopGestureRecognizer?.delegate = self
-    }        
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.topViewController?.preferredStatusBarStyle ?? .default
+    }
     
 }
 
@@ -22,6 +26,13 @@ extension YYNavigationController: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         self.interactivePopGestureRecognizer?.isEnabled = viewController.popGestureRecognizerEnabled.boolValue
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        let baseViewController: YYBaseViewController? = viewController as? YYBaseViewController
+        if let baseViewController = baseViewController {
+            self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18.0), NSAttributedString.Key.foregroundColor: baseViewController.statusBarStyle == .default ? UIColor.black : UIColor.white]
+        }
     }
     
 }

@@ -75,9 +75,6 @@ class YYAlertController: YYBaseViewController {
         self.style = preferredStyle
         self.responseKeyboard = responseKeyboard && preferredStyle == .alert
         self.coustomView = coustomView
-        self.homeBarView.backgroundColor = coustomView.backgroundColor
-        
-        self.mStackView.insertArrangedSubview(coustomView, at: 0)
     }
     
     override func viewDidLayoutSubviews() {
@@ -87,7 +84,7 @@ class YYAlertController: YYBaseViewController {
         self.actionStackView.bringSubviewToFront(self.verticalSeparateView)
         
         if self.style == .actionSheet {
-            // 设配刘海屏
+            // 适配刘海屏
             if self.view.yy_safeInsets.top != 0 {
                 self.mContentView.snp.updateConstraints { (make) in
                     make.height.lessThanOrEqualToSuperview().offset(-self.view.yy_safeInsets.top)
@@ -219,7 +216,6 @@ extension YYAlertController {
      @param completion 隐藏回调
      */
     public func hidden(completion: (() -> Void)?) {
-        
         if self.style == .alert {
             UIView.animate(withDuration: 0.15, animations: {
                 self.view.alpha = 0.0
@@ -234,8 +230,7 @@ extension YYAlertController {
             }) { (finished) in
                 self.dismiss(animated: false, completion: completion)
             }
-        }
-        
+        }        
     }
     
 }
@@ -245,6 +240,8 @@ private extension YYAlertController {
     
     func setupUI() {
         self.view.addSubview(self.mContentView)
+        self.homeBarView.backgroundColor = self.coustomView.backgroundColor
+        self.mStackView.insertArrangedSubview(self.coustomView, at: 0)
         
         if self.style == .alert {
             self.mContentView.layer.cornerRadius = 6.0

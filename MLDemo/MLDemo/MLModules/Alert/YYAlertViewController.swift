@@ -10,13 +10,12 @@ import UIKit
 import RxSwift
 
 class YYAlertViewController: YYBaseTableViewController {
-    
-    private let disposeBag = DisposeBag()
+        
     private let titles = ["Alert", "ActionSheet", "Coustom"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "自定义弹窗"                
+        self.title = "自定义弹窗"
     }
 
 }
@@ -53,7 +52,7 @@ extension YYAlertViewController {
             let item3 = YYActionSheetItem(title: "取消", textColor: UIColor.red, handler: nil)
             YYAlertController.yy_actionSheetController(title: "这是标题", message: "哈哈哈哈哈哈哈哈哈", actionSheetItems: [[item0, item1, item2], [item3]]).show()
             
-        default:
+        case 2:
             let aTextField = UITextField()
             aTextField.backgroundColor = kPageColor
             aTextField.placeholder = "输入内容"
@@ -79,9 +78,9 @@ extension YYAlertViewController {
             alt.show { (_) in
                 aTextField.becomeFirstResponder()
             }
-            
+        default:
+            return
         }
-        
     }
     
 }

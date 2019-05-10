@@ -35,6 +35,10 @@
 		BB10365F2272FCF1007A8A20 /* YYCoustomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10365E2272FCF1007A8A20 /* YYCoustomBarViewController.swift */; };
 		BB10366222730002007A8A20 /* YYCoustomBarMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB10366122730002007A8A20 /* YYCoustomBarMenuViewController.swift */; };
 		BB103669227315D2007A8A20 /* pic_ava_lm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB103667227315D1007A8A20 /* pic_ava_lm@2x.png */; };
+		BB1091712283C316007F7883 /* YYPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1091702283C316007F7883 /* YYPopoverController.swift */; };
+		BB1091732283D609007F7883 /* YYPopoverController+Coustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1091722283D609007F7883 /* YYPopoverController+Coustom.swift */; };
+		BB120CB52285088E00AAD4FB /* YYPopoverDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB120CB42285088E00AAD4FB /* YYPopoverDefaultView.swift */; };
+		BB120CB7228553A300AAD4FB /* YYPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB120CB6228553A300AAD4FB /* YYPopoverViewController.swift */; };
 		F8700022C3B59F0AF4229334 /* Pods_MLDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0ED0E08A008C595698907EA /* Pods_MLDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +76,10 @@
 		BB10365E2272FCF1007A8A20 /* YYCoustomBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCoustomBarViewController.swift; sourceTree = "<group>"; };
 		BB10366122730002007A8A20 /* YYCoustomBarMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYCoustomBarMenuViewController.swift; sourceTree = "<group>"; };
 		BB103667227315D1007A8A20 /* pic_ava_lm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_ava_lm@2x.png"; sourceTree = "<group>"; };
+		BB1091702283C316007F7883 /* YYPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYPopoverController.swift; sourceTree = "<group>"; };
+		BB1091722283D609007F7883 /* YYPopoverController+Coustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YYPopoverController+Coustom.swift"; sourceTree = "<group>"; };
+		BB120CB42285088E00AAD4FB /* YYPopoverDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYPopoverDefaultView.swift; sourceTree = "<group>"; };
+		BB120CB6228553A300AAD4FB /* YYPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYPopoverViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +106,7 @@
 		BB0B37A622703B5E00605FBC /* CoustomView */ = {
 			isa = PBXGroup;
 			children = (
-				BB0B37A4227018FC00605FBC /* YYCoustomBarView.swift */,
-				BB10365C2272955E007A8A20 /* YYHitFilterView.swift */,
+				BB10916E2283BB9B007F7883 /* CoustomBarView */,
 			);
 			path = CoustomView;
 			sourceTree = "<group>";
@@ -142,6 +149,7 @@
 				BB0E3858226EA779001C3B12 /* BaseViewController */,
 				BB0B37A622703B5E00605FBC /* CoustomView */,
 				BB0E3840226EA3E8001C3B12 /* AlertController */,
+				BB10916F2283C217007F7883 /* Popover */,
 			);
 			path = MLUtils;
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				BB0E384D226EA45A001C3B12 /* YYAlertViewController.swift */,
+				BB120CB6228553A300AAD4FB /* YYPopoverViewController.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -219,6 +228,25 @@
 				BB10365E2272FCF1007A8A20 /* YYCoustomBarViewController.swift */,
 			);
 			path = CoustomNavigationBar;
+			sourceTree = "<group>";
+		};
+		BB10916E2283BB9B007F7883 /* CoustomBarView */ = {
+			isa = PBXGroup;
+			children = (
+				BB0B37A4227018FC00605FBC /* YYCoustomBarView.swift */,
+				BB10365C2272955E007A8A20 /* YYHitFilterView.swift */,
+			);
+			path = CoustomBarView;
+			sourceTree = "<group>";
+		};
+		BB10916F2283C217007F7883 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				BB1091722283D609007F7883 /* YYPopoverController+Coustom.swift */,
+				BB1091702283C316007F7883 /* YYPopoverController.swift */,
+				BB120CB42285088E00AAD4FB /* YYPopoverDefaultView.swift */,
+			);
+			path = Popover;
 			sourceTree = "<group>";
 		};
 		E9474A4507EAA1056D00B67A /* Frameworks */ = {
@@ -355,6 +383,7 @@
 				BB0E3853226EA5D1001C3B12 /* UIView+extends.swift in Sources */,
 				BB0E3860226EA9BA001C3B12 /* YYTabBarController.swift in Sources */,
 				BB0E3864226EF1FA001C3B12 /* YYBaseTableViewController.swift in Sources */,
+				BB1091712283C316007F7883 /* YYPopoverController.swift in Sources */,
 				BB10365D2272955E007A8A20 /* YYHitFilterView.swift in Sources */,
 				BB0B37A5227018FC00605FBC /* YYCoustomBarView.swift in Sources */,
 				BB0B37A2226FF9D200605FBC /* UINavigationBar+extends.swift in Sources */,
@@ -363,13 +392,16 @@
 				BB0E385C226EA89C001C3B12 /* YYBaseViewController.swift in Sources */,
 				BB10365F2272FCF1007A8A20 /* YYCoustomBarViewController.swift in Sources */,
 				BB0E3848226EA3E8001C3B12 /* YYAlertAction.swift in Sources */,
+				BB120CB7228553A300AAD4FB /* YYPopoverViewController.swift in Sources */,
 				BB0E3846226EA3E8001C3B12 /* YYActionSheetView.swift in Sources */,
+				BB120CB52285088E00AAD4FB /* YYPopoverDefaultView.swift in Sources */,
 				BB0E386F226F1C3F001C3B12 /* UIViewController+extends.swift in Sources */,
 				BB0E3847226EA3E8001C3B12 /* YYAlertController+Coustom.swift in Sources */,
 				BB0E3849226EA3E8001C3B12 /* YYAlertController.swift in Sources */,
 				BB0E384A226EA3E8001C3B12 /* YYTipMessageView.swift in Sources */,
 				BB0E3868226F12F5001C3B12 /* YYMenuViewController.swift in Sources */,
 				BB0E3855226EA5FE001C3B12 /* UIImage+extends.swift in Sources */,
+				BB1091732283D609007F7883 /* YYPopoverController+Coustom.swift in Sources */,
 				BB0E382C226EA389001C3B12 /* AppDelegate.swift in Sources */,
 				BB0E384E226EA45A001C3B12 /* YYAlertViewController.swift in Sources */,
 				BB10366222730002007A8A20 /* YYCoustomBarMenuViewController.swift in Sources */,

@@ -11,7 +11,7 @@ import Foundation
 extension YYAlertController {
     
     /// AlertView
-    static func yy_alertController(title: String?, message: String?) -> YYAlertController {
+    static func yy_alertController(title: String?, message: String?) -> YYAlertController {        
         return YYAlertController(coustomView: YYTipMessageView(title: title, message: message), preferredStyle: .alert)
     }
     

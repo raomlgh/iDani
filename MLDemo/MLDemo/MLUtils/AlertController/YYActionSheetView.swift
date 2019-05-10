@@ -44,7 +44,7 @@ class YYActionSheetView: UIView {
         aTableView.bounces = false
         aTableView.tableFooterView = UIView()
         return aTableView
-    }()
+    }()        
     
     private lazy var topStackView: UIStackView = { [unowned self] in
         let aStackView = UIStackView(arrangedSubviews: [self.titleLabel, self.messageLabel])

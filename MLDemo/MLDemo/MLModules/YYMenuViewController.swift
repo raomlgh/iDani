@@ -10,7 +10,7 @@ import UIKit
 
 class YYMenuViewController: YYBaseTableViewController {
 
-    private let cellTexts = ["导航栏", "Alert、ActionSheet", "Popver"]
+    private let cellTexts = ["NavigationBar", "Alert、ActionSheet", "Popver", "LoopView"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +46,8 @@ extension YYMenuViewController {
             self.navigationController?.pushViewController(YYAlertViewController(style: .plain), animated: true)
         case 2:
             self.navigationController?.pushViewController(YYPopoverViewController(), animated: true)
+        case 3:
+            self.navigationController?.pushViewController(YYLoopViewController(), animated: true)
         default:
             return
         }

@@ -39,6 +39,10 @@
 		BB1091732283D609007F7883 /* YYPopoverController+Coustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1091722283D609007F7883 /* YYPopoverController+Coustom.swift */; };
 		BB120CB52285088E00AAD4FB /* YYPopoverDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB120CB42285088E00AAD4FB /* YYPopoverDefaultView.swift */; };
 		BB120CB7228553A300AAD4FB /* YYPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB120CB6228553A300AAD4FB /* YYPopoverViewController.swift */; };
+		BB173D79228E423F00A6DF51 /* YYLoopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB173D78228E423F00A6DF51 /* YYLoopView.swift */; };
+		BB173D7B228E431200A6DF51 /* YYLoopViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB173D7A228E431200A6DF51 /* YYLoopViewFlowLayout.swift */; };
+		BB173D7E228E5FF200A6DF51 /* YYLoopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB173D7D228E5FF200A6DF51 /* YYLoopViewController.swift */; };
+		BB173D80228E621300A6DF51 /* YYLoopViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB173D7F228E621300A6DF51 /* YYLoopViewCell.swift */; };
 		F8700022C3B59F0AF4229334 /* Pods_MLDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0ED0E08A008C595698907EA /* Pods_MLDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +84,10 @@
 		BB1091722283D609007F7883 /* YYPopoverController+Coustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YYPopoverController+Coustom.swift"; sourceTree = "<group>"; };
 		BB120CB42285088E00AAD4FB /* YYPopoverDefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYPopoverDefaultView.swift; sourceTree = "<group>"; };
 		BB120CB6228553A300AAD4FB /* YYPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYPopoverViewController.swift; sourceTree = "<group>"; };
+		BB173D78228E423F00A6DF51 /* YYLoopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYLoopView.swift; sourceTree = "<group>"; };
+		BB173D7A228E431200A6DF51 /* YYLoopViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYLoopViewFlowLayout.swift; sourceTree = "<group>"; };
+		BB173D7D228E5FF200A6DF51 /* YYLoopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYLoopViewController.swift; sourceTree = "<group>"; };
+		BB173D7F228E621300A6DF51 /* YYLoopViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YYLoopViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				BB10916E2283BB9B007F7883 /* CoustomBarView */,
+				BB0E3840226EA3E8001C3B12 /* AlertController */,
+				BB10916F2283C217007F7883 /* Popover */,
+				BB173D77228E421600A6DF51 /* LoopView */,
 			);
 			path = CoustomView;
 			sourceTree = "<group>";
@@ -148,8 +159,6 @@
 				BB0E384F226EA55B001C3B12 /* Categorys */,
 				BB0E3858226EA779001C3B12 /* BaseViewController */,
 				BB0B37A622703B5E00605FBC /* CoustomView */,
-				BB0E3840226EA3E8001C3B12 /* AlertController */,
-				BB10916F2283C217007F7883 /* Popover */,
 			);
 			path = MLUtils;
 			sourceTree = "<group>";
@@ -171,8 +180,9 @@
 			children = (
 				BB0E382B226EA389001C3B12 /* AppDelegate.swift */,
 				BB0E3867226F12F5001C3B12 /* YYMenuViewController.swift */,
-				BB0E384C226EA447001C3B12 /* Alert */,
 				BB1036602272FF49007A8A20 /* CoustomNavigationBar */,
+				BB0E384C226EA447001C3B12 /* Alert */,
+				BB173D7C228E5FB400A6DF51 /* Loop */,
 			);
 			path = MLModules;
 			sourceTree = "<group>";
@@ -247,6 +257,24 @@
 				BB120CB42285088E00AAD4FB /* YYPopoverDefaultView.swift */,
 			);
 			path = Popover;
+			sourceTree = "<group>";
+		};
+		BB173D77228E421600A6DF51 /* LoopView */ = {
+			isa = PBXGroup;
+			children = (
+				BB173D78228E423F00A6DF51 /* YYLoopView.swift */,
+				BB173D7A228E431200A6DF51 /* YYLoopViewFlowLayout.swift */,
+				BB173D7F228E621300A6DF51 /* YYLoopViewCell.swift */,
+			);
+			path = LoopView;
+			sourceTree = "<group>";
+		};
+		BB173D7C228E5FB400A6DF51 /* Loop */ = {
+			isa = PBXGroup;
+			children = (
+				BB173D7D228E5FF200A6DF51 /* YYLoopViewController.swift */,
+			);
+			path = Loop;
 			sourceTree = "<group>";
 		};
 		E9474A4507EAA1056D00B67A /* Frameworks */ = {
@@ -380,6 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB173D80228E621300A6DF51 /* YYLoopViewCell.swift in Sources */,
 				BB0E3853226EA5D1001C3B12 /* UIView+extends.swift in Sources */,
 				BB0E3860226EA9BA001C3B12 /* YYTabBarController.swift in Sources */,
 				BB0E3864226EF1FA001C3B12 /* YYBaseTableViewController.swift in Sources */,
@@ -389,11 +418,14 @@
 				BB0B37A2226FF9D200605FBC /* UINavigationBar+extends.swift in Sources */,
 				BB0E3862226EA9D6001C3B12 /* YYNavigationController.swift in Sources */,
 				BB0E3866226F0BAB001C3B12 /* YYBaseCollectionViewController.swift in Sources */,
+				BB173D7E228E5FF200A6DF51 /* YYLoopViewController.swift in Sources */,
 				BB0E385C226EA89C001C3B12 /* YYBaseViewController.swift in Sources */,
+				BB173D7B228E431200A6DF51 /* YYLoopViewFlowLayout.swift in Sources */,
 				BB10365F2272FCF1007A8A20 /* YYCoustomBarViewController.swift in Sources */,
 				BB0E3848226EA3E8001C3B12 /* YYAlertAction.swift in Sources */,
 				BB120CB7228553A300AAD4FB /* YYPopoverViewController.swift in Sources */,
 				BB0E3846226EA3E8001C3B12 /* YYActionSheetView.swift in Sources */,
+				BB173D79228E423F00A6DF51 /* YYLoopView.swift in Sources */,
 				BB120CB52285088E00AAD4FB /* YYPopoverDefaultView.swift in Sources */,
 				BB0E386F226F1C3F001C3B12 /* UIViewController+extends.swift in Sources */,
 				BB0E3847226EA3E8001C3B12 /* YYAlertController+Coustom.swift in Sources */,

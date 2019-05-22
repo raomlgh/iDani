@@ -17,7 +17,7 @@ class YYLoopViewController: YYBaseViewController {
     }()
     
     private lazy var loopView: YYLoopView = {
-        let aLoopView = YYLoopView(frame: CGRect(x: 0, y: self.yy_navigationBarHeight(), width: self.view.bounds.width, height: 150.0), config: (autoScroll: true, interval: 3.0))
+        let aLoopView = YYLoopView(frame: CGRect(x: 0, y: self.yy_navigationBarHeight(), width: self.view.bounds.width, height: 150.0), config: (autoScroll: true, interval: 2.0))
         aLoopView.setImages([UIImage.yy_imageFromBundle("pic_bg_ikun", "jpg")!,
                              UIImage.yy_imageFromBundle("pic_bg_duice", "jpg")!,
                              UIImage.yy_imageFromBundle("pic_bg_ikun", "jpg")!,
@@ -45,9 +45,13 @@ class YYLoopViewController: YYBaseViewController {
     }
     
     @objc func didClickOnChangeSourceButton(sender: UIButton) {
-        if arc4random()%2 == 0 {
-            self.loopView.setImages([UIImage.yy_imageFromBundle("pic_bg_ikun", "jpg")!,
-                                     UIImage.yy_imageFromBundle("pic_bg_duice", "jpg")!],
+        let randomNum = arc4random()%3
+        if randomNum == 0 {
+            self.loopView.setImages([UIImage.yy_imageFromBundle("pic_bg_ikun", "jpg")!],
+                                    imageUrls: nil)
+        }else if randomNum == 1 {
+            self.loopView.setImages([UIImage.yy_imageFromBundle("pic_bg_duice", "jpg")!,
+                                     UIImage.yy_imageFromBundle("pic_bg_ikun", "jpg")!],
                                     imageUrls: nil)
         }else {
             self.loopView.setImages([UIImage.yy_imageFromBundle("pic_bg_duice", "jpg")!,

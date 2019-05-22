@@ -9,9 +9,19 @@
 import UIKit
 import RxSwift
 
-private let kCollectionViewMargin: CGFloat = 20.0
+private let kCollectionViewMargin: CGFloat = 40.0
 private let kYYLoopViewCellID = "YYLoopViewCellId"
-typealias ConfigTuple = (autoScroll: Bool, interval: TimeInterval)
+
+private typealias ConfigTuple = (autoScroll: Bool, interval: TimeInterval)
+
+private enum ScrollDirection {
+    /// 当前位置不变
+    case none
+    /// 向前滚动
+    case forward
+    /// 向后滚动
+    case backward
+}
 
 class YYLoopView: UIView {
     
@@ -26,16 +36,22 @@ class YYLoopView: UIView {
     // item数
     private var itemCount: Int = 0
     // 实际显示Item数
-    private var totalItemCount: Int = 0
+    private var totalItemCount: Int = 0 {
+        didSet {
+            self.isCircle = totalItemCount > itemCount
+        }
+    }
+    // 是否循环滚动
+    private var isCircle = false
     
     // 自动切换计时
     private var cutdownInterval: TimeInterval = 0
     // 当前页码
     private var currentPage: Int = 0
-    // 记录上次的位置
-    private var lastContentOffset: CGFloat = 0.0
     // 判断滚动方向
-    private var scrollToRight = true
+    private var scrollDirection: ScrollDirection = .none
+    // 重定向的位置
+    private var redirectContentOffset: CGFloat = 0.0
     
     // 定时器
     private lazy var scrollTimer: Timer = { [unowned self] in
@@ -44,7 +60,7 @@ class YYLoopView: UIView {
                 self?.cutdownInterval -= 0.1
                 if self?.cutdownInterval ?? 0 <= Double(0.0) {
                     self?.cutdownInterval = self?.config.interval ?? 0
-                    self?.scrollToNextItem()
+                    self?.scrollToForwardItem()
                 }
             }
         })
@@ -129,36 +145,30 @@ private extension YYLoopView {
         }
     }
     
-    // 向后滚动
-    func scrollToNextItem() {
-        guard self.config.autoScroll && self.totalItemCount > 1 else {
-            // 不允许自动滚动或总Item数小于2
-            return
-        }
-        
-        if self.currentPage < self.totalItemCount {
-            self.currentPage += 1
-        }else {
-            self.currentPage = itemCount
-        }
-        
-        self.scrollToPage(self.currentPage, animated: true)
-    }
-    
     // 向前滚动
     func scrollToForwardItem() {
-        guard self.config.autoScroll && self.totalItemCount > 1 else {
-            // 不允许自动滚动或总Item数小于2
-            return
+        if self.currentPage < self.totalItemCount - 1 {
+            self.currentPage += 1
+            self.scrollToPage(self.currentPage, animated: true)
+        }else {
+            if self.isCircle {
+                self.currentPage = 0
+                self.scrollRedirect()
+            }
         }
-        
+    }
+    
+    // 向后滚动
+    func scrollToBackwardItem() {
         if self.currentPage > 0 {
             self.currentPage -= 1
+            self.scrollToPage(self.currentPage, animated: true)
         }else {
-            self.currentPage = itemCount
+            if self.isCircle {
+                self.currentPage = self.totalItemCount - 1
+                self.scrollRedirect()
+            }
         }
-        
-        self.scrollToPage(self.currentPage, animated: true)
     }
     
     // 滚动到指定位置
@@ -168,17 +178,17 @@ private extension YYLoopView {
     }
     
     // 重定向滚动位置
-    func scrollRedirect() {        
-        guard self.totalItemCount > 0 else {
-            return
-        }
+    func scrollRedirect() {
         self.cutdownInterval = self.config.interval
         
         let redirectIndex = self.currentPage%self.itemCount
         self.pageControl.currentPage = redirectIndex
-        self.currentPage = self.itemCount + redirectIndex
+        if self.isCircle {
+            self.currentPage = self.itemCount + redirectIndex
+        }
         
         self.scrollToPage(self.currentPage, animated: false)
+        self.redirectContentOffset = self.mCollectionView.contentOffset.x
     }
     
 }
@@ -202,14 +212,12 @@ extension YYLoopView {
             self.itemCount = imageUrls?.count ?? 0
         }
         
-        self.totalItemCount = self.itemCount > 1 ? self.itemCount*3 : self.itemCount
-        self.currentPage = self.itemCount
-        self.cutdownInterval = self.config.interval
-        self.pageControl.currentPage = 0
+        self.totalItemCount = self.itemCount > 1 ? self.itemCount * 3 : self.itemCount
         self.pageControl.numberOfPages = self.itemCount
+        self.currentPage = 0
         
         self.mCollectionView.reloadData()
-        self.scrollToPage(self.currentPage, animated: false)
+        self.scrollRedirect()
     }
     
 }
@@ -257,16 +265,26 @@ extension YYLoopView: UIScrollViewDelegate {
         self.scrollRedirect()
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {        
-        self.scrollToRight = self.lastContentOffset < scrollView.contentOffset.x
-        self.lastContentOffset = scrollView.contentOffset.x
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if abs(scrollView.contentOffset.x - self.redirectContentOffset) > self.mFlowLayout.itemSize.width * 0.25 {
+            if scrollView.contentOffset.x > self.redirectContentOffset {
+                self.scrollDirection = .forward
+            }else {
+                self.scrollDirection = .backward
+            }
+        }else {
+            self.scrollDirection = .none
+        }
     }
 
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        if self.scrollToRight {
-            self.scrollToNextItem()
-        } else {
+        switch self.scrollDirection {
+        case .forward:
             self.scrollToForwardItem()
+        case .backward:
+            self.scrollToBackwardItem()
+        default:
+            self.scrollToPage(self.currentPage, animated: true)
         }
     }
     

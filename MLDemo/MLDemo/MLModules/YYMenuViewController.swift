@@ -10,7 +10,7 @@ import UIKit
 
 class YYMenuViewController: YYBaseTableViewController {
 
-    private let cellTexts = ["NavigationBar", "Alert、ActionSheet", "Popver", "LoopView"]
+    private let cellTexts = ["NavigationBar", "Alert、ActionSheet", "Popver", "LoopView", "WKWebView"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +48,8 @@ extension YYMenuViewController {
             self.navigationController?.pushViewController(YYPopoverViewController(), animated: true)
         case 3:
             self.navigationController?.pushViewController(YYLoopViewController(), animated: true)
+        case 4:
+            self.navigationController?.pushViewController(YYBaseWebViewController(url: URL(string: "https:www.baidu.com")), animated: true)
         default:
             return
         }

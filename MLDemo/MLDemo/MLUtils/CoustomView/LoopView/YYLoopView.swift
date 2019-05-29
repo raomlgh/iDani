@@ -64,7 +64,7 @@ class YYLoopView: UIView {
                 }
             }
         })
-        RunLoop.current.add(aTimer, forMode: RunLoop.Mode.default)
+        RunLoop.current.add(aTimer, forMode: .default)
         return aTimer
     }()
     
@@ -179,6 +179,10 @@ private extension YYLoopView {
     
     // 重定向滚动位置
     func scrollRedirect() {
+        defer {
+            self.redirectContentOffset = self.mCollectionView.contentOffset.x
+        }
+        
         self.cutdownInterval = self.config.interval
         
         let redirectIndex = self.currentPage%self.itemCount
@@ -188,7 +192,6 @@ private extension YYLoopView {
         }
         
         self.scrollToPage(self.currentPage, animated: false)
-        self.redirectContentOffset = self.mCollectionView.contentOffset.x
     }
     
 }

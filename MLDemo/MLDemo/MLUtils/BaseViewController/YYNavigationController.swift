@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class YYNavigationController: UINavigationController {
 
@@ -42,7 +43,9 @@ extension YYNavigationController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer == self.interactivePopGestureRecognizer {
             // 确保self.interactivePopGestureRecognizer优先级最高
-            otherGestureRecognizer.require(toFail: gestureRecognizer)
+            if otherGestureRecognizer.view?.popGestureRecognizerFirst?.boolValue ?? false {
+                otherGestureRecognizer.require(toFail: gestureRecognizer)
+            }
         }
         return true
     }

@@ -49,7 +49,7 @@ extension YYMenuViewController {
         case 3:
             self.navigationController?.pushViewController(YYLoopViewController(), animated: true)
         case 4:
-            self.navigationController?.pushViewController(YYBaseWebViewController(url: URL(string: "https:www.baidu.com")), animated: true)
+            self.navigationController?.pushViewController(YYBaseWebViewController(url: URL(string: "https://www.sina.com.cn")), animated: true)
         default:
             return
         }

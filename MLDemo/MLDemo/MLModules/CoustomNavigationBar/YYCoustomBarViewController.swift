@@ -39,8 +39,10 @@ class YYCoustomBarViewController: YYBaseTableViewController {
             self.statusBarStyle = .lightContent
             self.yy_barCoustomView.setNavigationBar(color: UIColor.clear, image: nil)
             self.yy_barCoustomView.setNavigationBarBackgroundImage(UIImage.yy_imageFromBundle("pic_bg_ikun", "jpg"), imageUrl: nil)
-            self.yy_barCoustomView.setContentSubview(ACHeaderView()) { (make) in
-                make.size.bottom.equalToSuperview()
+            
+            self.yy_barCoustomView.setContentElementView(ACHeaderView()) { (make) in
+                make.top.equalToSuperview().offset(self.yy_navigationBarHeight())
+                make.bottom.width.centerX.equalToSuperview()
             }
             self.yy_barCoustomView.setNavigationBarBounceAndAlpha(bindScrollView: self.tableView, bounceEnable: true, changeAlphaEnable: true, beginOffset: 0, progressHeight: 0) { [unowned self] (alpha, barHeight) in
                 self.yy_barCoustomView.setSeparateLineViewHidden(barHeight > self.yy_navigationBarHeight())
@@ -53,7 +55,7 @@ class YYCoustomBarViewController: YYBaseTableViewController {
                 aView.backgroundColor = UIColor.orange
                 return aView
             }()
-            self.yy_barCoustomView.setBackgroundSubview(backgroundView) { (make) in
+            self.yy_barCoustomView.setContentElementView(backgroundView) { (make) in
                 make.edges.equalToSuperview()
             }
             self.yy_barCoustomView.setNavigationBarBounceAndAlpha(bindScrollView: self.tableView, bounceEnable: true, changeAlphaEnable: true, beginOffset: -self.yy_navigationBarHeight(), progressHeight: 60.0) { [unowned self] (alpha, barHeight) in
@@ -170,6 +172,7 @@ class ACHeaderView: YYHitFilterView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.clipsToBounds = true
         
         self.addSubview(self.mContentView)
         self.setupSubviewsConstraints()

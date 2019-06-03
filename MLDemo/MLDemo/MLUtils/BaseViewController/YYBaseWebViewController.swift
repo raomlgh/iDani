@@ -64,10 +64,24 @@ class YYBaseWebViewController: YYBaseViewController {
     
     // MARK: - Lazy
     private lazy var webView: WKWebView = { [unowned self] in
+//        let aWebView = WKWebView(frame: self.view.bounds, configuration: self.configuration)
         let aWebView = WKWebView(frame: self.view.bounds)
         aWebView.uiDelegate = self
         aWebView.navigationDelegate = self
+        aWebView.allowsBackForwardNavigationGestures = true
+//        aWebView.popGestureRecognizerFirst = NSNumber(booleanLiteral: false)
         return aWebView
+    }()
+    
+    private lazy var configuration: WKWebViewConfiguration = {
+        let configuration = WKWebViewConfiguration()
+        configuration.allowsInlineMediaPlayback = true
+        
+        let userScript = WKUserScript(source: "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta); var imgs = document.getElementsByTagName('img');for (var i in imgs){imgs[i].style.maxWidth='100%';imgs[i].style.height='auto';}", injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        
+        configuration.userContentController.addUserScript(userScript)
+        
+        return configuration
     }()
     
     private lazy var progressView: UIProgressView = {
@@ -111,7 +125,8 @@ extension YYBaseWebViewController {
             }
         case .HTML:
             if let HTMLString = self.sourece.HTMLString {
-                self.webView.loadHTMLString(HTMLString, baseURL: nil)
+                let HTML = "<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></header>" + HTMLString
+                self.webView.loadHTMLString(HTML, baseURL: nil)
             }
         case .PDF:
             if let data = self.sourece.data {
@@ -141,6 +156,18 @@ extension YYBaseWebViewController {
     
     @objc private func close(sender: UIBarButtonItem) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    /// 获取所有的图片地址
+    @objc private func fetchAllImages() {
+        // 这里是js，主要目的实现对url的获取
+        let jsGetImages = "function getImages(){var objs = document.getElementsByTagName(\"img\"); var imgScr = ''; for(var i=0;i<objs.length;i++){ imgScr = imgScr + objs[i].src + '+';}; return imgScr;};"
+    
+        self.webView.evaluateJavaScript(jsGetImages, completionHandler: nil)
+        self.webView.evaluateJavaScript("getImages()") { (imageUrls, err) in
+            let imgUrls = (imageUrls as! String).components(separatedBy: "+")
+            print(imgUrls)
+        }
     }
     
 }
@@ -180,6 +207,12 @@ extension YYBaseWebViewController: WKUIDelegate {
             self.progressView.setProgress(0.0, animated: false)
             self.progressView.isHidden = true
         }
+        
+        // 禁止长按弹出选项框
+        webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none';", completionHandler: nil)
+        
+        // 获取所有的图片URL
+        self.fetchAllImages()
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {

@@ -122,8 +122,8 @@
 		BB0B37A622703B5E00605FBC /* CoustomView */ = {
 			isa = PBXGroup;
 			children = (
-				BB13CB9D229CD3FB0050BD26 /* EmptyView */,
 				BB10916E2283BB9B007F7883 /* CoustomBarView */,
+				BB13CB9D229CD3FB0050BD26 /* EmptyView */,
 				BB0E3840226EA3E8001C3B12 /* AlertController */,
 				BB10916F2283C217007F7883 /* Popover */,
 				BB173D77228E421600A6DF51 /* LoopView */,

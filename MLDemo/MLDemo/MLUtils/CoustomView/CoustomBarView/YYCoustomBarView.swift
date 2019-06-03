@@ -54,14 +54,6 @@ public class YYCoustomBarView: YYHitFilterView {
         return aEffectView
     }()
     
-    // 用于添加外部视图
-    private lazy var mContentView: YYHitFilterView = {
-        let aView = YYHitFilterView()
-        aView.backgroundColor = UIColor.clear
-        aView.clipsToBounds = true
-        return aView
-    }()
-    
     // 用于设置颜色，图片，大小始终等于minHeight
     private lazy var mBarView = CBBarView()
     
@@ -90,7 +82,6 @@ public class YYCoustomBarView: YYHitFilterView {
         self.addSubview(self.mBackgroundImgView)
         self.addSubview(self.blurView)
         self.addSubview(self.mBarView)
-        self.addSubview(self.mContentView)
         self.addSubview(self.separateLineView)
         
         self.setBarHeight(originHeight, minHeight)
@@ -106,11 +97,6 @@ public class YYCoustomBarView: YYHitFilterView {
         self.mBarView.snp.makeConstraints { (make) in
             make.top.width.centerX.equalToSuperview()
             make.height.equalTo(minHeight)
-        }
-        
-        self.mContentView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.mBarView.snp.bottom)
-            make.width.centerX.bottom.equalToSuperview().priority(.high)
         }
         
         self.separateLineView.snp.makeConstraints { (make) in
@@ -148,7 +134,7 @@ private extension YYCoustomBarView {
 public extension YYCoustomBarView {
     
     /// 设置最小高度
-    public func setBarHeight(_ originHeight: CGFloat?, _ minHeight: CGFloat?) {
+    func setBarHeight(_ originHeight: CGFloat?, _ minHeight: CGFloat?) {
         guard originHeight != nil || minHeight != nil else {
             return
         }
@@ -168,23 +154,15 @@ public extension YYCoustomBarView {
     }
     
     /**
-     添加子视图到mContentView上
-     */
-    public func setContentSubview(_ view: YYHitFilterView,  _ closure: (_ make: ConstraintMaker) -> Void) {
-        self.mContentView.addSubview(view)
-        view.snp.makeConstraints(closure)
-    }
-    
-    /**
      添加子视图到self上及mBarView下
      */
-    public func setBackgroundSubview(_ view: YYHitFilterView,  _ closure: (_ make: ConstraintMaker) -> Void) {
+    func setContentElementView(_ view: YYHitFilterView,  _ closure: (_ make: ConstraintMaker) -> Void) {
         self.insertSubview(view, belowSubview: self.mBarView)
         view.snp.makeConstraints(closure)
     }
     
     /// 设置分割线的显隐
-    public func setSeparateLineViewHidden(_ hidden: Bool) {
+    func setSeparateLineViewHidden(_ hidden: Bool) {
         self.separateLineView.isHidden = hidden
     }
     
@@ -193,7 +171,7 @@ public extension YYCoustomBarView {
      @param color 导航栏颜色
      @param image 导航栏图片
      */
-    public func setNavigationBar(color: UIColor? = kNavBarClolor, image: UIImage? = nil) {
+    func setNavigationBar(color: UIColor? = kNavBarClolor, image: UIImage? = nil) {
         self.mBarView.backgroundColor = color
         self.mBarView.setImage(image)
     }
@@ -203,7 +181,7 @@ public extension YYCoustomBarView {
      @param image 背景图片
      @param imageUrl 网络图片
      */
-    public func setNavigationBarBackgroundImage(_ image: UIImage?, imageUrl: URL?) {
+    func setNavigationBarBackgroundImage(_ image: UIImage?, imageUrl: URL?) {
         self.mBackgroundImgView.image = image
         if let imageUrl = imageUrl {
             self.mBackgroundImgView.kf.setImage(with: imageUrl)
@@ -218,7 +196,7 @@ public extension YYCoustomBarView {
      @param originOffset bindScrollView最初的contentOffset (FIXME: 以后再改进，)
      @param
      */
-    public func setNavigationBarBounceAndAlpha(bindScrollView: UIScrollView,
+    func setNavigationBarBounceAndAlpha(bindScrollView: UIScrollView,
                                                bounceEnable: Bool = false,
                                                changeAlphaEnable: Bool = true,
                                                beginOffset: CGFloat = 0.0,

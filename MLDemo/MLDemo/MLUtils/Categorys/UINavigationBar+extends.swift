@@ -8,13 +8,13 @@
 
 import UIKit
 
+private var kOverlayViewKey: Void?
+
 extension UINavigationBar {
-    
-    static private var kOverlayViewKey = "OverlayViewKey"
     
     // 导航栏上插入的一个View
     public var yy_overlayView: UIView? {
-        var overlayView = objc_getAssociatedObject(self, UINavigationBar.kOverlayViewKey) as? UIView
+        var overlayView = objc_getAssociatedObject(self, &kOverlayViewKey) as? UIView
         if overlayView == nil {
             var barBackgroundView: UIView?
             let barBackgroundViewClass: AnyClass!
@@ -35,7 +35,7 @@ extension UINavigationBar {
                 overlayView = UIView(frame: barBackgroundView.bounds)
                 overlayView!.backgroundColor = UIColor.purple
                 barBackgroundView.insertSubview(overlayView!, at: 0)
-                objc_setAssociatedObject(self, UINavigationBar.kOverlayViewKey, overlayView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                objc_setAssociatedObject(self, &kOverlayViewKey, overlayView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             }
         }
         return overlayView

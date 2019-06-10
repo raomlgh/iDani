@@ -16,10 +16,17 @@ private enum loadType {
     case PDF
 }
 
+private let kEstimatedProgressKey = "estimatedProgress"
+private let kCanGoBackKey = "canGoBack"
+
 class YYBaseWebViewController: YYBaseViewController {
     
     private var type: loadType = .unknow
     private var sourece: (url: URL?, HTMLString: String?, data: Data?) = (nil, nil, nil)
+    private let cookie: String? = UserDefaults.standard.object(forKey: "token") as? String
+    
+    // Token
+    public var token: String?
     
     init(url: URL?) {
         super.init()
@@ -53,19 +60,27 @@ class YYBaseWebViewController: YYBaseViewController {
         self.setupSubviewsConstraints()
         self.loadContent()
         
-        self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
-        self.webView.addObserver(self, forKeyPath: "canGoBack", options: .new, context: nil)
+        self.webView.addObserver(self, forKeyPath: kEstimatedProgressKey, options: .new, context: nil)
+        self.webView.addObserver(self, forKeyPath: kCanGoBackKey, options: .new, context: nil)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.webView.snp.remakeConstraints { (make) in
+            make.top.width.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-self.view.yy_safeInsets.bottom)
+        }
     }
     
     deinit {
-        self.webView.removeObserver(self, forKeyPath: "estimatedProgress")
-        self.webView.removeObserver(self, forKeyPath: "canGoBack")
+        self.webView.removeObserver(self, forKeyPath: kEstimatedProgressKey)
+        self.webView.removeObserver(self, forKeyPath: kCanGoBackKey)
     }
     
     // MARK: - Lazy
-    private lazy var webView: WKWebView = { [unowned self] in
-//        let aWebView = WKWebView(frame: self.view.bounds, configuration: self.configuration)
-        let aWebView = WKWebView(frame: self.view.bounds)
+    private(set) lazy var webView: WKWebView = { [unowned self] in
+        let aWebView = WKWebView(frame: self.view.bounds, configuration: self.configuration)
         aWebView.uiDelegate = self
         aWebView.navigationDelegate = self
         aWebView.allowsBackForwardNavigationGestures = true
@@ -80,6 +95,10 @@ class YYBaseWebViewController: YYBaseViewController {
         let userScript = WKUserScript(source: "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta); var imgs = document.getElementsByTagName('img');for (var i in imgs){imgs[i].style.maxWidth='100%';imgs[i].style.height='auto';}", injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         
         configuration.userContentController.addUserScript(userScript)
+        if let cookie = self.cookie {
+            let cookieScript = WKUserScript(source: "document.cookie=\(cookie)", injectionTime: .atDocumentStart, forMainFrameOnly: false)
+            configuration.userContentController.addUserScript(cookieScript)
+        }
         
         return configuration
     }()
@@ -121,7 +140,7 @@ extension YYBaseWebViewController {
         switch self.type {
         case .URL:
             if let url = self.sourece.url {
-                self.webView.load(URLRequest(url: url))
+                self.webView.load(URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 30.0))
             }
         case .HTML:
             if let HTMLString = self.sourece.HTMLString {
@@ -158,6 +177,20 @@ extension YYBaseWebViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    /// 刷新Token
+    private func saveTokenToLocalStorage() {
+        if let token = self.token {
+            //保存token到本地
+            self.webView.evaluateJavaScript("localStorage.setItem('h5token', '\(token)')") { (data, error) in
+                print("error=\(error.debugDescription)")
+            }
+        }else{
+            self.webView.evaluateJavaScript("localStorage.clear()") { (data, error) in
+                print("error=\(error.debugDescription)")
+            }
+        }
+    }
+    
     /// 获取所有的图片地址
     @objc private func fetchAllImages() {
         // 这里是js，主要目的实现对url的获取
@@ -178,9 +211,9 @@ extension YYBaseWebViewController {
     // 监听加载进度
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if ((object as? WKWebView) == self.webView) {
-            if keyPath == "estimatedProgress" {
+            if keyPath == kEstimatedProgressKey {
                 self.progressView.setProgress(Float(self.webView.estimatedProgress), animated: true)
-            }else if keyPath == "canGoBack" {
+            }else if keyPath == kCanGoBackKey {
                 let canGoBack = change?[NSKeyValueChangeKey.newKey] as? Bool ?? false
                 self.setNavigationLeftItems(canGoBack: canGoBack)
             }
@@ -201,7 +234,9 @@ extension YYBaseWebViewController: WKUIDelegate {
     
     // 加载完成
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.title = webView.title
+        if self.title?.isEmpty ?? true {
+            self.title = webView.title
+        }
         self.progressView.setProgress(1.0, animated: true)        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             self.progressView.setProgress(0.0, animated: false)
@@ -211,8 +246,12 @@ extension YYBaseWebViewController: WKUIDelegate {
         // 禁止长按弹出选项框
         webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none';", completionHandler: nil)
         
+        
+        // 刷新Token
+        self.saveTokenToLocalStorage()
+        
         // 获取所有的图片URL
-        self.fetchAllImages()
+//        self.fetchAllImages()
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
@@ -231,6 +270,7 @@ extension YYBaseWebViewController: WKNavigationDelegate {
 
 
 class YYWeakScriptMessageDelegate: NSObject, WKScriptMessageHandler {
+    // window.webkit.messageHandlers.<方法名>.postMessage(<数据>)
     weak private var scriptDelegate: WKScriptMessageHandler?
     
     init(delegate: WKScriptMessageHandler) {
